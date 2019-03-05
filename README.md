@@ -1,6 +1,6 @@
 # Ejercicio Json Evaluación
 
-JSON LOL
+## JSON LOL
 
    1. Lista el nombre de todos los campeones.
    2. Contar los campeones que sean magos/tanques/luchadores(Lo que pidas por teclado).
