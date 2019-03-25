@@ -3,7 +3,8 @@
     #3.- Buscar(Palabra escrita por teclado)que se encuentre en la descripcion.
     #4.- Pedir la vida base(hp) de los campeones por teclado y mostrar a los campeones que una vida igual o superior.
     #5.- Compara algun stat(pedido por teclado) entre dos campeones (pedidos por teclado).
-
+    
+import json
 
 def listado(datos):
     lista = []
@@ -11,15 +12,15 @@ def listado(datos):
         lista.append(datos["Campeones"]["Champion"][i]["name"])
     return lista
 
-def contartipos(cad,datos):
-	listatipos=[]
-	for documento in datos:
-		if documento["tags"]==cad:
-			for elem in datos["Campeones"]["Champion"]:
-				listatipos.append(elem)
-    return(listatipos)
 
-import json
+def contar_tipos(cad,datos):
+    listatipos = []
+    for Campeones in datos:
+        for Champion in Campeones:
+            if Champion["tags"].find(cad)!=-1:
+                listatipos.append(Champion["name"])
+    return len(listatipos)
+        
 
 with open("leagueoflegends.json","r") as fichero:
     datos = json.load(fichero)
@@ -34,7 +35,8 @@ print ('''Chuleta de tipos:
 - Jungler    - Tank     - Support   - Pusher
 ''')
 cad=str(input("\n¿Que tipo de campeon deseas contar?: "))
-print(contartipos(cad,datos))
+cad=cad.lower()
+print(contar_tipos(cad,datos))
         
 #print('''\n\n	Elige una de las siguientes opciones:				
 #1. Lista los nombres de todos los campeones.
