@@ -29,7 +29,13 @@ def filtro_descripcion(datos,clave):
     return cad
 
 #4.- Pedir la vida base(hp) de los campeones por teclado y mostrar a los campeones que una vida igual o superior.
-
+def pedir_stats(datos,stat):
+    lista = []
+    for hp in range(0,23):
+        if int(datos["Campeones"]["Champion"][hp]["estadisticas"]["healthBase"]) <= stat:
+            lista.append(datos["Campeones"]["Champion"][hp]["name"])
+    return lista
+    
 #5.- Compara algun stat(pedido por teclado) entre dos campeones (pedidos por teclado).
 with open("leagueoflegends.json","r") as fichero:
     datos = json.load(fichero)
@@ -52,8 +58,13 @@ clave=str(input("\n¿Que palabras buscas en la descripción?: "))
 print(filtro_descripcion(datos,clave))
 
 print("\n4.- Pedir la vida base(hp) de los campeones por teclado y mostrar a los campeones que una vida igual o superior.\n")
+stat=int(input("Dime cual es la vida base(HP): "))
+print(pedir_stats(datos,stat))
 
 print("\n5.- Compara algun stat(pedido por teclado) entre dos campeones (pedidos por teclado).\n")
+
+
+
 #print('''\n\n	Elige una de las siguientes opciones:				
 #1. Lista los nombres de todos los campeones.
 #2. Contar los campeones que sean magos/tanques/luchadores(Lo que pidas por teclado).
